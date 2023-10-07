@@ -1,4 +1,4 @@
-﻿using Berger.Extensions.Base;
+﻿using Berger.Extensions.System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
