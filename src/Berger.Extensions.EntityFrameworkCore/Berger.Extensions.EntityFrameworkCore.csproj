@@ -4,9 +4,20 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>disable</Nullable>
 	</PropertyGroup>
-	
+
+	<PropertyGroup>
+		<UseProjectReference>true</UseProjectReference>
+	</PropertyGroup>
+
+	<ItemGroup Condition="'$(UseProjectReference)' == 'true'">
+		<ProjectReference Include="..\..\..\Berger.Extensions.System\src\Berger.Extensions.System\Berger.Extensions.System.csproj" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(UseProjectReference)' != 'true'">
+		<PackageReference Include="Berger.Extensions.System" Version="*" />
+	</ItemGroup>
+
 	<ItemGroup>
-		<PackageReference Include="Berger.Extensions.System" Version="1.0.0.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.11" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
