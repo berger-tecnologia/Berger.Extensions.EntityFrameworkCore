@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{E2E0AEAC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Berger.Extensions.System", "..\..\Berger.Extensions.System\src\Berger.Extensions.System\Berger.Extensions.System.csproj", "{0A0132FE-5456-4623-9753-31F5BD0003C9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Troubleshooting", "Troubleshooting", "{DB47B74E-1003-4887-9AF3-4F926387CFA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,7 +36,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D28B13DD-97B6-42C5-B67F-897E3530C6DA} = {677379BC-9711-47C3-81D9-B1C92189EA2B}
-		{0A0132FE-5456-4623-9753-31F5BD0003C9} = {677379BC-9711-47C3-81D9-B1C92189EA2B}
+		{0A0132FE-5456-4623-9753-31F5BD0003C9} = {DB47B74E-1003-4887-9AF3-4F926387CFA2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4961BE93-F316-4B63-8144-768113F9C617}
