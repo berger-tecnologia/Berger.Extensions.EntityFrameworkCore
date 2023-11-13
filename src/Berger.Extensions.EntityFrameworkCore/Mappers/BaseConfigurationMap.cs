@@ -12,7 +12,7 @@ namespace Berger.Extensions.EntityFrameworkCore
             var properties = typeof(T).GetProperties();
 
             /* Primary key */
-            builder.HasKey(e => e.ID);
+            builder.HasKey(e => e.Id);
 
             // Field names
             builder.Property(e => e.Deleted).HasColumnName(BaseColumns.IsDeleted);
