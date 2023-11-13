@@ -1,11 +1,11 @@
-﻿using Berger.Extensions.System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Berger.Extensions.Abstractions;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Berger.Extensions.EntityFrameworkCore
 {
-    public abstract class BaseConfigurationMap<T> : IEntityTypeConfiguration<T> where T : BaseEntity
+    public abstract class BaseConfigurationMap<T> : IEntityTypeConfiguration<T> where T : class, IBaseEntity<Guid>
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
