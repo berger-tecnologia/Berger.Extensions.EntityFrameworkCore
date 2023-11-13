@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Berger.Extensions.EntityFrameworkCore
 {
-    public abstract class BaseConfigurationMap<T> : IEntityTypeConfiguration<T> where T : class, IBaseEntity
+    public abstract class BaseConfigurationMap<T> : IEntityTypeConfiguration<T> where T : class, IBaseEntity<Guid>
     {
         public virtual void Configure(EntityTypeBuilder<T> builder)
         {
