@@ -2,7 +2,7 @@
 
 namespace Berger.Extensions.EntityFrameworkCore
 {
-    public class ExpressionService<T> where T : class
+    public class ExpressionBaseService<T> where T : class
     {
         #region Properties
         private readonly List<string> _Elements = new List<string>();

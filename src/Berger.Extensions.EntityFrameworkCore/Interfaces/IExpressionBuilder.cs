@@ -2,6 +2,6 @@
 {
     public interface IExpressionBuilder<T> where T : class
     {
-        ExpressionService<T> Get();
+        ExpressionBaseService<T> Get();
     }
 }

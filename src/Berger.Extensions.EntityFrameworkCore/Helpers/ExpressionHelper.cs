@@ -5,7 +5,7 @@ namespace Berger.Extensions.EntityFrameworkCore
 {
     public static class ExpressionHelper
     {
-        public static IQueryable<T> ConfigureExpressions<T>(this IQueryable<T> query, ExpressionService<T> fields) where T : class
+        public static IQueryable<T> ConfigureExpressions<T>(this IQueryable<T> query, ExpressionBaseService<T> fields) where T : class
         {
             var elements = fields.Elements;
 
