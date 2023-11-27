@@ -24,8 +24,8 @@ namespace Berger.Extensions.EntityFrameworkCore
                 }
 
                 // Ownership Rules
-                if (property.Name == UserColumns.OwnerID)
-                    builder.Property(UserColumns.OwnerID).ValueGeneratedOnAdd().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+                if (property.Name == UserColumns.OwnerId)
+                    builder.Property(UserColumns.OwnerId).ValueGeneratedOnAdd().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             }
 
             // Customization for fields based on his interface.

@@ -38,7 +38,7 @@ namespace Berger.Extensions.EntityFrameworkCore
             builder.HasIndex(e => e.CreatedOn);
 
             /* Column Order */
-            builder.Property(KeyColumns.ID).HasColumnOrder(0);
+            builder.Property(KeyColumns.Id).HasColumnOrder(0);
 
             // Base configuration
             builder.Configure<T>();
