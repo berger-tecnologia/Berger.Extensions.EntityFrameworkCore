@@ -14,7 +14,6 @@
     public static class UserColumns
     {
         public const string UserId = "USER_ID";
-        public const string OwnerId = "OWNER_ID";
         public const string ReceiverId = "RECEIVER_ID";
     }
 }
