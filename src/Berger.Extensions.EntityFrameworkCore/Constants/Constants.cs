@@ -9,12 +9,11 @@
     }
     public static class KeyColumns
     {
-        public const string ID = "ID";
+        public const string Id = "ID";
     }
     public static class UserColumns
     {
-        public const string UserID = "USER_ID";
-        public const string OwnerID = "OWNER_ID";
-        public const string ReceiverID = "RECEIVER_ID";
+        public const string UserId = "USER_ID";
+        public const string ReceiverId = "RECEIVER_ID";
     }
 }

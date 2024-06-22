@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Berger.Extensions.EntityFrameworkCore
@@ -22,10 +21,6 @@ namespace Berger.Extensions.EntityFrameworkCore
                     if (!string.IsNullOrEmpty(rule.Name))
                         builder.Property(property.Name).HasColumnName(rule.Name);
                 }
-
-                // Ownership Rules
-                if (property.Name == UserColumns.OwnerID)
-                    builder.Property(UserColumns.OwnerID).ValueGeneratedOnAdd().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             }
 
             // Customization for fields based on his interface.
