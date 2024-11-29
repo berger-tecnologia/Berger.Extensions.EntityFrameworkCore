@@ -8,7 +8,7 @@ namespace Berger.Extensions.EntityFrameworkCore
         #region Methods
         public static IQueryable<T> ConfigureExpressions<T>(this IQueryable<T> query, ExpressionBaseService<T> fields) where T : class
         {
-            var elements = fields.Elements;
+            var entities = fields.Entities;
 
             var expressions = fields.Expressions;
 
@@ -25,9 +25,9 @@ namespace Berger.Extensions.EntityFrameworkCore
                 }
             }
 
-            if (elements.Count() > 0)
+            if (entities.Count() > 0)
             {
-                foreach (var expression in elements)
+                foreach (var expression in entities)
                 {
                     query = query.Include(expression);
                 }

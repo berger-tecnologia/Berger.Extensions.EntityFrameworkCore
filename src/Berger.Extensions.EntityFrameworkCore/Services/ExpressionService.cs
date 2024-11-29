@@ -5,7 +5,7 @@ namespace Berger.Extensions.EntityFrameworkCore
     public class ExpressionBaseService<T> where T : class
     {
         #region Properties
-        private readonly List<string> _Elements = new List<string>();
+        private readonly List<string> _entities = new List<string>();
         private readonly List<Expression<Func<T, object>>> _Expressions = new List<Expression<Func<T, object>>>();
         #endregion
 
@@ -16,15 +16,15 @@ namespace Berger.Extensions.EntityFrameworkCore
         }
         public void Add(string selector)
         {
-            _Elements.Add(selector);
+            _entities.Add(selector);
         }
         public IEnumerable<Expression<Func<T, object>>> Expressions
         {
             get { return _Expressions; }
         }
-        public IEnumerable<string> Elements
+        public IEnumerable<string> Entities
         {
-            get { return _Elements; }
+            get { return _entities; }
         }
         #endregion
     }
