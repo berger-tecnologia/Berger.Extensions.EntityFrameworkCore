@@ -2,10 +2,10 @@
 {
     public static class BaseColumns
     {
-        public const string IsDeleted = "IS_DELETED";
-        public const string DeletedOn = "DELETED_ON";
-        public const string CreatedOn = "CREATED_ON";
-        public const string ModifiedOn = "MODIFIED_ON";
+        public const string IsDeleted = "IS_DLT";
+        public const string DeletedOn = "DLT_ON";
+        public const string CreatedOn = "CRT_ON";
+        public const string ModifiedOn = "MDF_ON";
     }
     public static class KeyColumns
     {

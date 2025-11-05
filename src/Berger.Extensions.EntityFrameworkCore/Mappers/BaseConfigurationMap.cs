@@ -18,7 +18,7 @@ namespace Berger.Extensions.EntityFrameworkCore
             builder.Property(e => e.Deleted).HasColumnName(BaseColumns.IsDeleted);
             builder.Property(e => e.DeletedOn).HasColumnName(BaseColumns.DeletedOn);
             builder.Property(e => e.CreatedOn).HasColumnName(BaseColumns.CreatedOn);
-            builder.Property(e => e.ModifiedOn).HasColumnName(BaseColumns.ModifiedOn);
+            //builder.Property(e => e.ModifiedOn).HasColumnName(BaseColumns.ModifiedOn);
 
             // Mandatory fields
             builder.Property(e => e.Deleted).IsRequired();
