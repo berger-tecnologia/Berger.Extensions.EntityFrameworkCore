@@ -5,7 +5,7 @@
         public const string IsDeleted = "IS_DLT";
         public const string DeletedOn = "DLT_ON";
         public const string CreatedOn = "CRT_ON";
-        public const string ModifiedOn = "MDF_ON";
+        public const string UpdatedOn = "UPD_ON";
     }
     public static class KeyColumns
     {
