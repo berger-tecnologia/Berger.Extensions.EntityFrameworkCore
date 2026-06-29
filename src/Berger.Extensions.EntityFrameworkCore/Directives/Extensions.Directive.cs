@@ -1,0 +1,1 @@
+global using Berger.Extensions.Abstractions;
