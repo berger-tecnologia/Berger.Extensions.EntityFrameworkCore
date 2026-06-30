@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 
 namespace Berger.Extensions.EntityFrameworkCore;
 
-public sealed class Repository<T>(DbContext context) : IRepository<T> where T : class
+public class Repository<T>(DbContext context) : IRepository<T> where T : class
 {
     private readonly DbContext _context =
         context ?? throw new ArgumentNullException(nameof(context));

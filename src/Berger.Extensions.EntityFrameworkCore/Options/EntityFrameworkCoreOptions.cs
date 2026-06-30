@@ -1,7 +1,7 @@
 
 namespace Berger.Extensions.EntityFrameworkCore;
 
-public sealed class EntityFrameworkCoreOptions
+public class EntityFrameworkCoreOptions
 {
     public QueryTrackingBehavior QueryTrackingBehavior { get; set; } = QueryTrackingBehavior.NoTracking;
     public bool RegisterRepository { get; set; } = true;
