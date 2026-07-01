@@ -31,11 +31,11 @@ public abstract class BaseContext<TContext>(DbContextOptions<TContext> options, 
         return base.SaveChanges(acceptAllChangesOnSuccess);
     }
 
-    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken token = default)
     {
         ApplyAuditMetadata();
 
-        return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        return base.SaveChangesAsync(acceptAllChangesOnSuccess, token);
     }
 
     private void ApplyAuditMetadata()

@@ -8,17 +8,17 @@ public static partial class SqlScript
 {
     public static IReadOnlyList<string> SplitBatches(string script) => string.IsNullOrWhiteSpace(script) ? [] : GoCommandRegex().Split(Normalize(script)).Select(static batch => batch.Trim()).Where(static batch => batch.Length > 0).ToArray();
 
-    public static async Task ExecuteFileAsync(this DbContext context, string path, CancellationToken cancellationToken = default)
+    public static async Task ExecuteFileAsync(this DbContext context, string path, CancellationToken token = default)
     {
-        var script = await File.ReadAllTextAsync(ValidatePath(path), Encoding.UTF8, cancellationToken);
-        await context.ExecuteScriptAsync(script, cancellationToken);
+        var script = await File.ReadAllTextAsync(ValidatePath(path), Encoding.UTF8, token);
+        await context.ExecuteScriptAsync(script, token);
     }
 
-    public static async Task ExecuteScriptAsync(this DbContext context, string script, CancellationToken cancellationToken = default)
+    public static async Task ExecuteScriptAsync(this DbContext context, string script, CancellationToken token = default)
     {
         foreach (var batch in SplitBatches(script))
         {
-            await context.Database.ExecuteSqlRawAsync(batch, cancellationToken);
+            await context.Database.ExecuteSqlRawAsync(batch, token);
         }
     }
 

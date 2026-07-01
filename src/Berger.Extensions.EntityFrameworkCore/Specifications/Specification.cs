@@ -5,7 +5,6 @@ namespace Berger.Extensions.EntityFrameworkCore;
 public abstract class Specification<T> : ISpecification<T> where T : class
 {
     private readonly List<Expression<Func<T, object?>>> _includes = [];
-
     public Expression<Func<T, bool>>? Criteria { get; private set; }
     public IReadOnlyList<Expression<Func<T, object?>>> Includes => _includes;
     public Func<IQueryable<T>, IOrderedQueryable<T>>? OrderBy { get; private set; }

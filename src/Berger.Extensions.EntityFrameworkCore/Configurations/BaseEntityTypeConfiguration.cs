@@ -9,8 +9,8 @@ public abstract class BaseEntityTypeConfiguration<T> : IEntityTypeConfiguration<
 
         builder.HasQueryFilter(QueryFilterNames.SoftDelete, entity => !entity.Deleted);
 
-        builder.Property(e => e.Deleted).HasColumnName(BaseColumns.IsDeleted).IsRequired();
-        builder.Property(e => e.CreatedOn).HasColumnName(BaseColumns.CreatedOn).IsRequired().ValueGeneratedOnAdd().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+        builder.Property(e => e.Deleted).HasColumnName(BaseColumns.IsDeleted);
+        builder.Property(e => e.CreatedOn).HasColumnName(BaseColumns.CreatedOn).ValueGeneratedOnAdd().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
         builder.Property(e => e.UpdatedOn).HasColumnName(BaseColumns.UpdatedOn);
         builder.Property(e => e.DeletedOn).HasColumnName(BaseColumns.DeletedOn);
         builder.HasIndex(e => e.CreatedOn);

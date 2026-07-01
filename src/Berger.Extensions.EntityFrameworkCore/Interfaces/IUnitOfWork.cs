@@ -3,5 +3,5 @@ namespace Berger.Extensions.EntityFrameworkCore;
 public interface IUnitOfWork
 {
     IRepository<T> Repository<T>() where T : class;
-    Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+    Task<int> SaveChangesAsync(CancellationToken token = default);
 }

@@ -15,66 +15,66 @@ public class Repository<T>(DbContext context) : IRepository<T> where T : class
     {
         return SpecificationEvaluator.Apply(Set(), specification);
     }
-    public ValueTask<T?> GetByIdAsync<TId>(TId id, CancellationToken cancellationToken = default) where TId : notnull
+    public ValueTask<T?> GetByIdAsync<TId>(TId id, CancellationToken token = default) where TId : notnull
     {
-        return Set().FindAsync([id], cancellationToken);
+        return Set().FindAsync([id], token);
     }
-    public Task<T?> GetOneAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
+    public Task<T?> GetOneAsync(Expression<Func<T, bool>> predicate, CancellationToken token = default)
     {
         return Query()
-            .FirstOrDefaultAsync(predicate, cancellationToken);
+            .FirstOrDefaultAsync(predicate, token);
     }
-    public async Task<IReadOnlyList<T>> GetAsync(CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<T>> GetAsync(CancellationToken token = default)
     {
         return await Query()
-            .ToListAsync(cancellationToken);
+            .ToListAsync(token);
     }
-    public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>> predicate, CancellationToken token = default)
     {
         return await Query()
             .Where(predicate)
-            .ToListAsync(cancellationToken);
+            .ToListAsync(token);
     }
-    public async Task<IReadOnlyList<T>> GetAsync(ISpecification<T> specification, CancellationToken cancellationToken = default)
+    public async Task<IReadOnlyList<T>> GetAsync(ISpecification<T> specification, CancellationToken token = default)
     {
         return await Select(specification)
-            .ToListAsync(cancellationToken);
+            .ToListAsync(token);
     }
-    public Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
+    public Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate, CancellationToken token = default)
     {
         return Set()
-            .AnyAsync(predicate, cancellationToken);
+            .AnyAsync(predicate, token);
     }
-    public Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default)
+    public Task<int> CountAsync(Expression<Func<T, bool>>? predicate = null, CancellationToken token = default)
     {
         return Query()
             .Apply(predicate)
-            .CountAsync(cancellationToken);
+            .CountAsync(token);
     }
-    public async Task<T> InsertAsync(T entity, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async Task<T> InsertAsync(T entity, bool saveChanges = true, CancellationToken token = default)
     {
         return await SaveAsync(
             entity,
             saveChanges,
-            cancellationToken,
+            token,
             static (set, value, token) =>
                 set.AddAsync(value, token).AsTask());
     }
-    public async Task InsertAsync(IEnumerable<T> entities, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async Task InsertAsync(IEnumerable<T> entities, bool saveChanges = true, CancellationToken token = default)
     {
         await SaveAsync(
             entities,
             saveChanges,
-            cancellationToken,
+            token,
             static (set, values, token) =>
                 set.AddRangeAsync(values, token));
     }
-    public async Task<T> UpdateAsync(T entity, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async Task<T> UpdateAsync(T entity, bool saveChanges = true, CancellationToken token = default)
     {
         return await SaveAsync(
             entity,
             saveChanges,
-            cancellationToken,
+            token,
             static (set, value, _) =>
             {
                 set.Update(value);
@@ -82,12 +82,12 @@ public class Repository<T>(DbContext context) : IRepository<T> where T : class
                 return Task.CompletedTask;
             });
     }
-    public async Task DeleteAsync(T entity, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async Task DeleteAsync(T entity, bool saveChanges = true, CancellationToken token = default)
     {
         await SaveAsync(
             entity,
             saveChanges,
-            cancellationToken,
+            token,
             static (set, value, _) =>
             {
                 set.Remove(value);
@@ -95,12 +95,12 @@ public class Repository<T>(DbContext context) : IRepository<T> where T : class
                 return Task.CompletedTask;
             });
     }
-    public async Task DeleteAsync(IEnumerable<T> entities, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async Task DeleteAsync(IEnumerable<T> entities, bool saveChanges = true, CancellationToken token = default)
     {
         await SaveAsync(
             entities,
             saveChanges,
-            cancellationToken,
+            token,
             static (set, values, _) =>
             {
                 set.RemoveRange(values);
@@ -108,17 +108,17 @@ public class Repository<T>(DbContext context) : IRepository<T> where T : class
                 return Task.CompletedTask;
             });
     }
-    public Task<int> DeleteWhereAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken = default)
+    public Task<int> DeleteWhereAsync(Expression<Func<T, bool>> predicate, CancellationToken token = default)
     {
         return Set()
             .Where(predicate)
-            .ExecuteDeleteAsync(cancellationToken);
+            .ExecuteDeleteAsync(token);
     }
-    public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public Task<int> SaveChangesAsync(CancellationToken token = default)
     {
-        return _context.SaveChangesAsync(cancellationToken);
+        return _context.SaveChangesAsync(token);
     }
-    public async Task<PagedResult<T>> PageAsync(int page, int pageSize, Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default)
+    public async Task<PagedResult<T>> PageAsync(int page, int pageSize, Expression<Func<T, bool>>? predicate = null, CancellationToken token = default)
     {
         ArgumentOutOfRangeException.ThrowIfLessThan(page, 1);
         ArgumentOutOfRangeException.ThrowIfLessThan(pageSize, 1);
@@ -127,12 +127,12 @@ public class Repository<T>(DbContext context) : IRepository<T> where T : class
             .Apply(predicate);
 
         var total = await query
-            .LongCountAsync(cancellationToken);
+            .LongCountAsync(token);
 
         var items = await query
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
-            .ToListAsync(cancellationToken);
+            .ToListAsync(token);
 
         return new PagedResult<T>(
             items,
@@ -140,7 +140,7 @@ public class Repository<T>(DbContext context) : IRepository<T> where T : class
             pageSize,
             total);
     }
-    public async Task SoftDeleteAsync(T entity, bool saveChanges = true, CancellationToken cancellationToken = default)
+    public async Task SoftDeleteAsync(T entity, bool saveChanges = true, CancellationToken token = default)
     {
         var deletedEntity =
             entity as IDeleted
@@ -151,7 +151,7 @@ public class Repository<T>(DbContext context) : IRepository<T> where T : class
 
         Set().Update(entity);
 
-        await CommitAsync(saveChanges, cancellationToken);
+        await CommitAsync(saveChanges, token);
     }
     private DbSet<T> Set()
     {
@@ -163,16 +163,16 @@ public class Repository<T>(DbContext context) : IRepository<T> where T : class
             ? Set()
             : Set().AsNoTracking();
     }
-    private Task CommitAsync(bool saveChanges, CancellationToken cancellationToken)
+    private Task CommitAsync(bool saveChanges, CancellationToken token)
     {
         return saveChanges
-            ? SaveChangesAsync(cancellationToken)
+            ? SaveChangesAsync(token)
             : Task.CompletedTask;
     }
-    private async Task<TValue> SaveAsync<TValue>(TValue value, bool saveChanges, CancellationToken cancellationToken, Func<DbSet<T>, TValue, CancellationToken, Task> operation)
+    private async Task<TValue> SaveAsync<TValue>(TValue value, bool saveChanges, CancellationToken token, Func<DbSet<T>, TValue, CancellationToken, Task> operation)
     {
-        await operation(Set(), value, cancellationToken);
-        await CommitAsync(saveChanges, cancellationToken);
+        await operation(Set(), value, token);
+        await CommitAsync(saveChanges, token);
 
         return value;
     }
