@@ -1,5 +1,3 @@
-
-
 namespace Berger.Extensions.EntityFrameworkCore;
 
 public static class SpecificationEvaluator

@@ -7,7 +7,7 @@ public abstract class BaseEntityTypeConfiguration<T> : IEntityTypeConfiguration<
     public virtual void Configure(EntityTypeBuilder<T> builder)
     {
 
-        builder.HasQueryFilter(QueryFilterNames.SoftDelete, entity => !entity.Deleted);
+        //builder.HasQueryFilter(QueryFilterNames.SoftDelete, entity => !entity.Deleted);
 
         builder.Property(e => e.Deleted).HasColumnName(BaseColumns.IsDeleted);
         builder.Property(e => e.CreatedOn).HasColumnName(BaseColumns.CreatedOn).ValueGeneratedOnAdd().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
